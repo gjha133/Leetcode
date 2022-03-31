@@ -1,3 +1,4 @@
+[Discussion Post (created on 31/2/2022 at 23:48)](https://leetcode.com/problems/guess-number-higher-or-lower/discuss/1901237/C%2B%2B-or-Easy-Binary-Search-Solution-or-O(logn))  
 <h2>  Guess Number Higher or Lower</h2><hr><div><p>We are playing the Guess Game. The game is as follows:</p>
 
 <p>I pick a number from <code>1</code> to <code>n</code>. You have to guess which number I picked.</p>
