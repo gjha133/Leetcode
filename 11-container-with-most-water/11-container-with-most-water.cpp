@@ -5,8 +5,7 @@ public:
         while(start < end)
         {
             ans = max(ans, min(height[start], height[end]) * (end - start));
-            if(height[start] < height[end]) start++;
-            else end--;
+            height[start] < height[end] ? start++ : end--;
         }
         
         return ans;
