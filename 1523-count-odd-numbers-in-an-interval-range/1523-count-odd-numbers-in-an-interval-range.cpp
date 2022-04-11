@@ -2,13 +2,11 @@ class Solution {
 public:
     int countOdds(int low, int high) {
         
-        if(isEven(low) and isEven(high)) return ((high-low)/2);
-        else return ((high-low)/2) + 1;
+        if(!(low&1) and !(high&1)) return (high-low)>>1;
+        else return ((high-low)>>1) + 1;
     }
     
     
-    bool isEven(int num)
-    {
-        return num % 2 == 0;
-    }
+    // low&1 == 1 ---->>low is odd
+    // low&1 == 0 ---->>low is even
 };
