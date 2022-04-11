@@ -7,6 +7,7 @@ public:
         {
             long mid = start + (end-start)/2;
             long x = mid*(mid + 1)/2;
+            if(x == n) return mid;
             if(x > n) end = mid;
             else start = mid;
         }
