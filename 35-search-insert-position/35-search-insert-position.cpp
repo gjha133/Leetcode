@@ -15,6 +15,7 @@ public:
                 ans = mid;
             }
         }
-        return ans == -1 ? 0 : ans + 1;
+        return start;
+        //return ans == -1 ? 0 : ans + 1;
     }
 };
