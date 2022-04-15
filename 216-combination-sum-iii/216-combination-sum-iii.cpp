@@ -2,6 +2,7 @@ class Solution {
 public:
     
     void findcombination(vector<int>& candidates, int target, int sum, vector<int> &ds, int index, int k, vector<vector<int>> &ans){
+        if(k < 0) return;
         if(sum > target) return;
         
         if(sum == target)
