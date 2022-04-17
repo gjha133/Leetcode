@@ -1,0 +1,1 @@
+https://leetcode.com/problems/increasing-order-search-tree/discuss/1955033/Simple-easy-c%2B%2B-solution
