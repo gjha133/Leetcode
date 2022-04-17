@@ -1,7 +1,7 @@
 class Solution {
 public:
     int arraySign(vector<int>& nums) {
-        int count = 0, product = 1;
+        int count = 0;
         
         for(int num : nums)
         {
