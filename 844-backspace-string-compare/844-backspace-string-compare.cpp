@@ -20,7 +20,7 @@ public:
         while(!st.empty()) 
         {
             if(st.top() != rt.top()) return false;
-            st.pop();   rt.pop();
+                st.pop();   rt.pop();
         }
         
         return 1;
