@@ -5,9 +5,9 @@ public:
         for(int num : nums) s.insert(num);
         
         int i=0; 
-        for(auto itr = s.begin(); itr != s.end(); itr++)
+        for(int num : s)
         {
-            nums[i] = *itr;
+            nums[i] = num;
             i++;
         }
         
