@@ -10,27 +10,30 @@
  * };
  */
 class Solution {
-    string ans;
+    
 public:
     string smallestFromLeaf(TreeNode* root) {
         string s = "";
-        helper(root, s);
+        string ans = "~";
+        helper(root, s, ans);
         return ans;
     }
     
 private:
-    void helper(TreeNode* root, string &s)
+    void helper(TreeNode* root, string &s, string &ans)
     {
         if(!root) return;
-        s.push_back(root->val + 'a');
-        if(root->left==root->right){
+        
+        s.push_back(root->val + 'a');     // if root->val = 1 then 1 + 'a' = b
+        
+        if(root->left == root->right)
+        {
 			 string str=s;
 			 reverse(str.begin(),str.end());
-			 if(ans.empty() || str<ans)
-				 ans=str;
+			 if(ans.empty() or str<ans) ans=str;
 		}
-		helper(root->left,s);
-		helper(root->right,s);
+		helper(root->left,s, ans);
+		helper(root->right,s, ans);
 		s.pop_back();
     }
 };
