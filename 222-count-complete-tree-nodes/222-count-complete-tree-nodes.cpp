@@ -11,12 +11,14 @@
  */
 class Solution {
 public:
+    // Time Complexity - O((logn)^2)
     int countNodes(TreeNode* root) {
         if(!root) return 0;
-        int left = leftheight(root);
-        int right = rightheight(root);
         
-        if(left == right) return (1<<left) - 1;
+        int leftH = leftheight(root);
+        int rightH = rightheight(root);
+        
+        if(leftH == rightH) return (1<<leftH) - 1;     // 1<<left ---> 1*2^left
         return 1 + countNodes(root->left) + countNodes(root->right);
     }
 private:    
