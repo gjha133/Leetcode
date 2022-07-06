@@ -12,7 +12,8 @@
 class Solution {
 public:
     vector<vector<int>> levelOrderBottom(TreeNode* root) {
-        vector<vector<int>> ans;
+        int h = height(root);
+        vector<vector<int>> ans(h);
         if(!root) return ans;
         queue<TreeNode*> q;
         q.push(root);
@@ -31,10 +32,18 @@ public:
                 if(node->right) q.push(node->right);                
             }
             
-            ans.push_back(level);
+            ans[h-1] = level;    
+            h--;
         }
         
-        reverse(ans.begin(), ans.end());
+        
         return ans;
+    }
+    
+private:
+    int height(TreeNode* root)
+    {
+        if(!root) return 0;
+        return 1 + max(height(root->left), height(root->right));
     }
 };
