@@ -6,7 +6,7 @@ public:
         {
             if(!num1 or !num2) break;
             if(num1 >= num2) num1 -= num2;
-            else if(num2 >= num1) num2 -= num1;
+            else num2 -= num1;
             count++;
         }
         
