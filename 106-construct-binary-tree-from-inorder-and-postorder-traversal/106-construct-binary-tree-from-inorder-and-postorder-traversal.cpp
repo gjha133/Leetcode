@@ -22,9 +22,16 @@ public:
     {
         if(inStart > inEnd or postStart > postEnd) return NULL;
         TreeNode *root = new TreeNode(postorder[postEnd]);
-        int rootIndex = map[postorder[postEnd]];
-        int numsLeft = rootIndex - inStart;
+        
+        int rootIndex = map[postorder[postEnd]];        // Taking root index in INORDER from last element in postorder 
+        int numsLeft = rootIndex - inStart;             // Numbers from starting to before root are part of left subtree
+        
+        // Inorder   -> [Left | Root | Right]...... We start from start and go till rootIndex - 1
+        // Postorder -> [Left | Right | Root]...... We start from start and go till start + left numbers - 1     
         root->left = buildTree(inorder, inStart, rootIndex - 1, postorder, postStart, postStart + numsLeft - 1, map);
+        
+        // Inorder   -> [Left | Root | Right]...... We start from start and go till rootIndex - 1
+        // Postorder -> [Left | Right | Root]...... We start from start and go till start + left numbers - 1        
         root->right = buildTree(inorder, rootIndex + 1, inEnd, postorder, postStart + numsLeft, postEnd - 1, map);
         return root;
     }
