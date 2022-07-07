@@ -12,15 +12,20 @@
 class Solution {
 public:
     using N = TreeNode;
-    N* prev = NULL;
     void flatten(TreeNode* root) {
         if(!root) return;
+        stack<N*> s;
+        s.push(root);
         
-        flatten(root->right);
-        flatten(root->left);
-        
-        root->right = prev;
-        root->left = NULL;
-        prev = root;
+        while(!s.empty())
+        {
+            auto node = s.top();
+            s.pop();
+            if(node->right) s.push(node->right);
+            if(node->left) s.push(node->left);
+            
+            if(!s.empty()) node->right = s.top();
+            node->left = NULL;
+        }
     }
 };
