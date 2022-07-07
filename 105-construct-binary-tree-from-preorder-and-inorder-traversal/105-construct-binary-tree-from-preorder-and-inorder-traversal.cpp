@@ -21,10 +21,15 @@ public:
         if(preStart > preEnd or inStart > inEnd) return NULL;
 
         TreeNode* root = new TreeNode(preorder[preStart]);
-        int inRoot = inMap[root->val];
-        int numsLeft = inRoot - inStart;
+        int inRoot = inMap[root->val];      // inRoot givevs the index of root in Inorder
+        int numsLeft = inRoot - inStart;    // Numbers from starting to before root are part of left subtree
 
+       // Preorder -> [Root | Left | Right]...... We start from root + 1 and root + left for end
+       // Inorder  -> [Left | Root | Right]...... We start from starting and go till root - 1
         root->left = buildTree(preorder, preStart + 1, preStart + numsLeft, inorder, inStart, inRoot - 1, inMap);
+       
+       // Preorder -> [Root | Left | Right]...... We start from root + left + 1 for start and go till end for end
+       // Inorder  -> [Left | Root | Right]...... We start from root + 1 and go till end
         root->right = buildTree(preorder, preStart + numsLeft + 1, preEnd, inorder, inRoot + 1, inEnd, inMap);
 
         return root;
