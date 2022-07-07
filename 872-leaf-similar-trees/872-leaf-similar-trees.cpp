@@ -13,25 +13,24 @@ class Solution {
 public:
     bool leafSimilar(TreeNode* root1, TreeNode* root2) {
         vector<int> leaf1;
-        findLeaf1(root1, leaf1);
+        findLeaf(root1, leaf1);
         vector<int> leaf2;
-        findLeaf2(root2, leaf2);
+        findLeaf(root2, leaf2);
         
         return leaf1 == leaf2;
         
     }
     
-    void findLeaf1(TreeNode* &root1, vector<int> &leaf1)
+    void findLeaf(TreeNode* root, vector<int> &leaf)
     {
-        if(!root1->left and !root1->right) {leaf1.push_back(root1->val); return;}
-        if(root1->left) findLeaf1(root1->left, leaf1);
-        if(root1->right) findLeaf1(root1->right, leaf1);        
+        if(!root->left and !root->right) 
+        {
+            leaf.push_back(root->val); 
+            return;
+        }
+        if(root->left) findLeaf(root->left, leaf);
+        if(root->right) findLeaf(root->right, leaf);        
     }
-    void findLeaf2(TreeNode* &root2, vector<int> &leaf2)
-    {
-        if(!root2->left and !root2->right) {leaf2.push_back(root2->val); return;}
-        if(root2->left) findLeaf2(root2->left, leaf2);
-        if(root2->right) findLeaf2(root2->right, leaf2);        
-    }
+    
 };
 
