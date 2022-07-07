@@ -10,33 +10,24 @@
  * };
  */
 class Solution {
-    unordered_map<long ,int> prefixCount;
-    int count{0};
 public:
-    void dfs(TreeNode* root, int targetSum, long partialSum){
-        if(!root)return;
-        
-        partialSum += root->val;
-        count += prefixCount[ partialSum -  targetSum];
-        
-        prefixCount[partialSum]++;
-        
-        if(root->left){
-            dfs(root->left, targetSum , partialSum);
-        }
-        if(root->right){
-           dfs(root->right, targetSum, partialSum); 
-        }
-        prefixCount[partialSum]--; // backtrack
-        
-    }
-        
     int pathSum(TreeNode* root, int targetSum) {
-        if(!root)return 0;
-        
-        prefixCount[0] = 1;
-        dfs(root, targetSum, 0);
-        
+        unordered_map<int,int> map;
+        int count = 0;
+        countPaths(root, targetSum, 0, map, count);
         return count;
+    }
+    
+private:
+    void countPaths(TreeNode* root, int targetSum, long currentSum, unordered_map<int,int> &map, int &count)
+    {
+        if(!root) return;
+        currentSum += root->val;
+        if(currentSum == targetSum) count++;
+        if(map.find(currentSum-targetSum) != map.end()) count += map[currentSum-targetSum];
+        map[currentSum]++;
+        countPaths(root->left, targetSum, currentSum, map, count);
+        countPaths(root->right, targetSum, currentSum, map, count);
+        map[currentSum]--;       
     }
 };
