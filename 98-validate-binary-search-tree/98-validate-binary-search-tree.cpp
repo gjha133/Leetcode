@@ -18,7 +18,10 @@ public:
     bool isValidBST(TreeNode* root, long min, long max)
     {
         if(!root) return true;
+        //If root's value is out of range, false
         if(root->val >= max or root->val <= min) return false;
+        // If we go left then root->value becomes the max
+        // If we go right then root->value becmoes the min
         return isValidBST(root->left, min, root->val) and isValidBST(root->right, root->val, max);        
     }
 };
