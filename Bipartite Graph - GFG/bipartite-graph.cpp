@@ -5,6 +5,29 @@ using namespace std;
  // } Driver Code Ends
 class Solution {
 public:
+    bool bipartiteDFS(int node, vector<int> adj[], vector<int> &color)
+    {
+        if(color[node] == -1) color[node] = 1;  // If not visited, color it with 1 (can take 0 also)
+        
+        for(auto it : adj[node])
+        {
+            if(color[it] == -1)
+            {
+                color[it] = 1 - color[node];
+                if(!bipartiteDFS(it, adj, color))
+                {
+                    return false;
+                }
+                else if(color[it] == color[node]) 
+                {
+                    return false;
+                }
+            }
+        }
+        
+        return true;
+    }
+    
     bool bipartiteBFS(int src, vector<int> adj[], vector<int> &color)
     {
         queue<int> q;
@@ -40,6 +63,7 @@ public:
 	        if(color[i] == -1)  // color array will act as visited array. -1 = not visited
 	        {
 	            if(!bipartiteBFS(i, adj, color)) return false;
+	            
 	            // if function returns false, it will be true and it will return false
 	        }
 	    }
