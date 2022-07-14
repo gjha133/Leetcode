@@ -14,20 +14,37 @@ public:
             if(color[it] == -1)
             {
                 color[it] = 1 - color[node];
-                if(!bipartiteDFS(it, adj, color))
-                {
-                    return false;
-                }
-                else if(color[it] == color[node]) 
-                {
-                    return false;
-                }
+                if(!bipartiteDFS(it, adj, color)) return false;
+            }
+            else 
+            {
+                if(color[it] == color[node]) return false;
             }
         }
         
         return true;
     }
     
+    bool isBipartite(int V, vector<int>adj[]){
+	    // Code here
+	    vector<int> color (V, -1);
+	    
+	    for(int i=0; i<V; i++)
+	    {
+	        if(color[i] == -1)  // color array will act as visited array. -1 = not visited
+	        {
+	            if(!bipartiteDFS(i, adj, color)) return false;
+	            
+	            // if function returns false, it will be true and it will return false
+	        }
+	    }
+	    
+	    return true;    // if function is true, it will return true at the end
+	}
+	
+
+    // BFS CODE 
+    /*
     bool bipartiteBFS(int src, vector<int> adj[], vector<int> &color)
     {
         queue<int> q;
@@ -70,6 +87,7 @@ public:
 	    
 	    return true;    // if function is true, it will return true at the end
 	}
+    */
 
 };
 
