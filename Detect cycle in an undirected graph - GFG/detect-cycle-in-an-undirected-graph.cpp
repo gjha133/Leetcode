@@ -6,7 +6,7 @@ using namespace std;
 class Solution {
   public:
     // Function to detect cycle in an undirected graph.
-    bool bfs(int i, int V, vector<int> &vis, vector<int> adj[]){
+    bool bfs(int i, int V, vector<bool> &vis, vector<int> adj[]){
         queue<pair<int, int>> q;
         q.push({i, -1});
         while(!q.empty()){
@@ -29,7 +29,7 @@ class Solution {
     
     bool isCycle(int V, vector<int> adj[]) {
         // Code here
-        vector<int> vis(V, 0);
+        vector<bool> vis(V, 0);
         for(int i = 0; i < V; i++){
             if(!vis[i]){
                 if(bfs(i, V, vis, adj)){
