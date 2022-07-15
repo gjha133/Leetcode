@@ -6,6 +6,36 @@ using namespace std;
 class Solution
 {
 	public:
+	
+	vector<int> topoSort(int V, vector<int> adj[]) 
+	{
+	    // code here
+	    queue<int> q;
+	    vector<int> inDegree (V, 0); 
+	    for(int i=0; i<V; i++) for(auto neighbour: adj[i]) inDegree[neighbour]++;
+	    
+	    for(int i=0; i<V; i++) if(!inDegree[i]) q.push(i);
+	    
+	    vector<int> topo;
+	    while(!q.empty())
+	    {
+	        int node = q.front();
+	        q.pop();
+	        topo.push_back(node);
+	        for(auto neighbour : adj[node])
+	        {
+	            inDegree[neighbour]--;
+	            if(!inDegree[neighbour]) q.push(neighbour);
+	        }
+	    }
+	    
+	    return topo;
+	}
+	
+	
+	
+	// DFS SOlution
+	/*
 	void findTopoSortDFS(stack<int> &stack, vector<bool> &vis, vector<int> adj[], int node)
 	{
 	    vis[node] = 1;
@@ -45,6 +75,7 @@ class Solution
 	    
 	    return topo;
 	}
+	*/
 };
 
 // { Driver Code Starts.
