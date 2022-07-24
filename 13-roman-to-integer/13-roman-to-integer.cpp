@@ -1,31 +1,32 @@
 class Solution {
 public:
-    int romanToInt(string s) {
-        int ret = 0;        // to store the return value
-        int temp = 0;       // to store the previous value
+    int romanToInt(string str) {
+        int ans = 0;        // To store final ans
+        int prev = 0;       // To store value of last char
         
-        for (size_t i = 0; i < s.size(); i++) {
-            char curr = s[i];
-            int pos = 0;     // to store the current value
+        for(int i=0; i<str.size(); i++)
+        {
+            char curr = str[i];
+            int val = 0;
             
-            switch(curr) {
-                case 'I': pos = 1; break;
-                case 'V': pos = 5; break;
-                case 'X': pos = 10; break;
-                case 'L': pos = 50; break;
-                case 'C': pos = 100; break;
-                case 'D': pos = 500; break;
-                case 'M': pos = 1000; break;
+            switch(curr)
+            {
+                case 'I': val = 1; break;
+                case 'V': val = 5; break;
+                case 'X': val = 10; break;
+                case 'L': val = 50; break;
+                case 'C': val = 100; break;
+                case 'D': val = 500; break;
+                case 'M': val = 1000; break;
                 default: return 0;
             }
             
-            ret += pos;
-            if (temp < pos)
-                ret -= temp*2;     // ex: IV, ret = 1 + 5 - 1*2 = 4
-            temp = pos;
+            ans += val;
+            if(prev < val) ans -= prev*2;
+            prev = val;
         }
         
-        return ret;
+        return ans;
     }
 };
 
