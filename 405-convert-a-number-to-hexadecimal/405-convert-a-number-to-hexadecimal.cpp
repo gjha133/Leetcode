@@ -14,7 +14,7 @@ public:
         {
             rem = n % base;
             
-            rem < 10 ? ans += ('0' + rem) : ans += ( ('a' - 10) + rem );
+            rem < 10 ? ans += ('0' + rem) : ans += ( 'a' + rem % 10 );
             
             n /= base;
         }
