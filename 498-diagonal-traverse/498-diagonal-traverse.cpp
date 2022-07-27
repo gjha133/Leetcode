@@ -13,9 +13,9 @@ public:
             // Checking sum of row + col
             if(!((row + col)&1))  // If the sum is even. We will go in upward direction. row-- col++
             {
-                // If it is the last column. We cant go up so we will move to next row
+                // If it is the last column. We cant go up so we will move to next row (3->6)
                 if(col == cols-1) row++; 
-                // If it is the first row. We will move to next column
+                // If it is the first row. We will move to next column (1->2)
                 else if(row == 0) col++;
                 // Simply move diagonally up
                 else row--, col++;
