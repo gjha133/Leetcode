@@ -6,7 +6,7 @@ public:
         for(auto &c : s)
         {
             if(B >= 1 and c == 'a') return false;
-            if(c == 'b') B++;
+            else if(c == 'b') B++;
         }
         
         return true;
