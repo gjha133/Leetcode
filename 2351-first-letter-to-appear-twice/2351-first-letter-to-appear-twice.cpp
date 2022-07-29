@@ -1,14 +1,14 @@
 class Solution {
 public:
     char repeatedCharacter(string s) {
-        int freq[26] = {0};
+        bool seen[26] = {0};
         
-        for(int i=0; i<s.size(); i++)
+        for(auto c : s)
         {
-            freq[s[i] - 'a']++;
-            if(freq[s[i] - 'a'] == 2) return s[i];
+            if(seen[c - 'a']) return c;
+            else seen[c - 'a'] = true;
         }
         
-        return 'a';
+        return false;
     }
 };
