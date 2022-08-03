@@ -1,3 +1,6 @@
+Very nicely explained intuition
+https://www.youtube.com/watch?v=OKcrLfR-8mE
+​
 ```
 //Questions to ask the interviewer -
 ​
