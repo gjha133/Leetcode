@@ -32,8 +32,7 @@ public:
         
         for(int i=0;i<nums.size();i++)
         {
-            runningSum+=nums[i];
-            
+            runningSum+=nums[i];            
             if(k!=0) 
                 runningSum = runningSum%k;
             
