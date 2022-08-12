@@ -8,7 +8,7 @@ private:
         }        
         for(int i = ind;i<arr.size();i++) 
         {
-            if(i>ind and arr[i] == arr[i-1]) continue;     // If we are starting from index then we take that number and duplicate check
+            if(i != ind and arr[i] == arr[i-1]) continue;     // If we are starting from index then we take that number and duplicate check
             if(arr[i] > target) break; 
             ds.push_back(arr[i]);
             findCombination(i+1, target - arr[i], arr, ans, ds); 
