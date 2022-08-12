@@ -5,9 +5,9 @@ public:
         if(k < 0) return;
         if(sum > target) return;
         
-        if(sum == target)
+        if(k == 0)
         {
-            if(k==0) ans.push_back(ds);
+            if(sum == target) ans.push_back(ds);
             return;
         }
         
