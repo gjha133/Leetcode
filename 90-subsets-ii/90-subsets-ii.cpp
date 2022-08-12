@@ -13,7 +13,7 @@ public:
         ans.push_back(ds);
         for(int i=index; i<nums.size(); i++)
         {
-            if(i > index and nums[i] == nums[i-1]) continue;
+            if(i != index and nums[i] == nums[i-1]) continue;
             ds.push_back(nums[i]);
             subset(nums, ans, ds, i + 1);
             ds.pop_back();
