@@ -13,6 +13,7 @@ public:
         
         for(int i = index; i < candidates.size(); i++)
         {
+            if(sum > target) return;
             ds.push_back(candidates[i]); 
             findcombination(candidates, target, sum + candidates[i], ds, i+1, k-1, ans);
             ds.pop_back();
