@@ -21,9 +21,11 @@ public:
                 default: return 0;
             }
             
-            ans += val;
-            if(prev < val) ans -= prev*2;
-            prev = val;
+            ans += val;                 // Add the value of current char to the final ans
+            if(prev < val)              // If last char value is smaller than curr then reduce the value of final ans with twice the
+                ans -= prev*2;          // value of the last char to remove the effect of last char
+                                        // XIX -> 10 + 1 = 11 (X+I). 11 - 1*2 = 9 (As I before X). 9 + 10 = 19. Final ans
+            prev = val;     
         }
         
         return ans;
