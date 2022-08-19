@@ -12,9 +12,8 @@ public:
         if(i < 0 or j < 0) return 0;
         if(dp[i][j] != -1) return dp[i][j];
         if(grid[i][j]) return 0;
-        int up = 0, left = 0;
-        up = countUnique(i-1, j, grid, dp);
-        left = countUnique(i, j-1, grid, dp);
+        int up = countUnique(i-1, j, grid, dp);
+        int left = countUnique(i, j-1, grid, dp);
         
         return dp[i][j] = up + left;
     }
