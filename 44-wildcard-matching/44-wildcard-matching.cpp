@@ -2,9 +2,9 @@ class Solution {
 public:
     bool isMatch(string s, string p) {
         int n = p.size(), m = s.size();
-        vector<vector<int>> dp (n, vector<int> (m, -1));
+        vector<vector<int>> dp (n + 1, vector<int> (m + 1, -1));
         // return f(p, s, n-1, m-1);
-        return fmemo(p, s, n-1, m-1, dp);
+        return fmemo(p, s, n, m, dp);
     }
     
     bool f(string &pattern, string &text, int i, int j)
@@ -29,21 +29,21 @@ public:
     
     bool fmemo(string &pattern, string &text, int i, int j, vector<vector<int>>& dp)
     {
-        if(i < 0 and j < 0) return true;
-        if(i < 0 and j >= 0) return false;
-        if(j < 0 and i >= 0)
+        if(i == 0 and j == 0) return true;
+        if(i == 0 and j > 0) return false;
+        if(j == 0 and i > 0)
         {
-            for(int q = 0; q <= i; q++)
+            for(int q = 1; q <= i; q++)
             {
-                if(pattern[q] != '*') return false;
+                if(pattern[q-1] != '*') return false;
             }
             return true;
         }
         
         if(dp[i][j] != -1) return dp[i][j];
         
-        if(pattern[i] == text[j] or pattern[i] == '?') return dp[i][j] = fmemo(pattern,text,i-1,j-1, dp);
-        if(pattern[i] == '*')
+        if(pattern[i-1] == text[j-1] or pattern[i-1] == '?') return dp[i][j] = fmemo(pattern,text,i-1,j-1, dp);
+        if(pattern[i-1] == '*')
         {
             return dp[i][j] = fmemo(pattern,text,i-1,j, dp) or fmemo(pattern,text,i,j-1, dp);
         }
