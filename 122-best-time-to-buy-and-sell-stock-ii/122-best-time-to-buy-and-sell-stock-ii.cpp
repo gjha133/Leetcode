@@ -1,18 +1,27 @@
+/*
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-       vector<vector<int>>dp(prices.size()+2,vector<int>(2,0));
-        for(int i=prices.size()-1;i>=0;i--){
-            for(int j=0;j<2;j++){
-        int take=0;
-        if(j){
-            take=max(-prices[i]+dp[i+1][0],dp[i+1][1]);
-        }
-        else{
-            take=max(prices[i]+dp[i+1][1],dp[i+1][0]);
-        } dp[i][j]=take;
+        int n = prices.size();
+        vector<vector<int>>dp(n+1,vector<int>(2,0));
+        for(int i = n-1;i >= 0; i--)
+        {
+            for(int buy = 0; buy < 2; buy++)
+            {
+                int profit = 0;
+                if(buy)
+                {
+                    profit = max(-prices[i]+dp[i+1][0],dp[i+1][1]);
+                }
+                else
+                {
+                    profit = max(prices[i]+dp[i+1][1],dp[i+1][0]);
+                } 
+                
+                dp[i][buy]=profit;
             }
         }
+        
         return dp[0][1];
     }
         
@@ -36,5 +45,17 @@ public:
         }
         
         return dp[i][canBuy] = profit;
+    }
+};
+*/
+
+class Solution {
+public:
+    int maxProfit(vector<int>& P) {
+        int profit = 0;
+        for(int i = 1; i < size(P); i++)
+            if(P[i] > P[i-1])              // yesterday was valley, today is peak
+                profit += P[i] - P[i-1];   // buy yesterday, sell today
+        return profit;
     }
 };
