@@ -2,9 +2,10 @@ class Solution {
 public:
     bool isMatch(string s, string p) {
         int n = s.size(), m = p.size();
-        vector<vector<int>> dp (n + 1, vector<int> (m + 1, -1));
+        vector<vector<bool>> dp (n + 1, vector<bool> (m + 1, 0));       // bool for ftab
         //return f(n-1, m-1, s, p);
-        return fmemo(n, m, s, p, dp);
+        //return fmemo(n, m, s, p, dp);
+        return ftab(n, m, s, p, dp);
 
     }
     
@@ -83,6 +84,37 @@ public:
         }
         
         return dp[i][j] = false;
+    }
+    
+    int ftab(int i, int j, string& s, string& p, vector<vector<bool>> &dp)
+    {
+        int n = s.size(), m = p.size();
+        
+        // Base Case
+        dp[0][0] = true;
+        for(int i = 1; i <= n; i++) dp[i][0] = false;
+        for(int j = 1; j <= m; j++)
+        {
+            if(p[j-1] == '*') dp[0][j] = dp[0][j-2];            
+        }
+        
+        for(int i = 1; i <= n; i++)
+        {
+            for(int j = 1; j <= m; j++)
+            {
+                if(s[i-1] == p[j-1] or p[j-1] == '.') dp[i][j] = dp[i-1][j-1];
+                else if(p[j-1] == '*')
+                {
+                    if(s[i-1] != p[j-2] and p[j-2] != '.') 
+                        dp[i][j] = dp[i][j-2]; 
+                    else
+                        dp[i][j] = dp[i-1][j] or dp[i][j-2];
+                }
+                else dp[i][j] = false;
+            }
+        }
+        
+        return dp[n][m];
     }
     
     
