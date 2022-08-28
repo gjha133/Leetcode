@@ -1,33 +1,21 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        int n = prices.size();
-        vector<vector<int>> dp(n, vector<int> (2, -1));
-        //return f(0, true, prices);
-        return fmemo(0, true, prices, dp);
-    }
-    
-    int f(int i, bool canBuy, vector<int>& prices)
-    {
-        if(i == prices.size()) return 0;
-        
-        int profit = 0;
-        if(canBuy)
-        {
-            int Buy = -prices[i] + f(i + 1, false, prices);
-            int notBuy = 0 + f(i + 1, true, prices);
-            profit = max(Buy, notBuy);
+       vector<vector<int>>dp(prices.size()+2,vector<int>(2,0));
+        for(int i=prices.size()-1;i>=0;i--){
+            for(int j=0;j<2;j++){
+        int take=0;
+        if(j){
+            take=max(-prices[i]+dp[i+1][0],dp[i+1][1]);
         }
-        else // Cant Buy->>> Going to Sell
-        {
-            int Sell = prices[i] + f(i + 1, true, prices);
-            int notSell = 0 + f(i + 1, false, prices);
-            profit = max(Sell, notSell);
+        else{
+            take=max(prices[i]+dp[i+1][1],dp[i+1][0]);
+        } dp[i][j]=take;
+            }
         }
-        
-        return profit;
+        return dp[0][1];
     }
-    
+        
     int fmemo(int i, bool canBuy, vector<int>& prices, vector<vector<int>>& dp)
     {
         if(i == prices.size()) return 0;
