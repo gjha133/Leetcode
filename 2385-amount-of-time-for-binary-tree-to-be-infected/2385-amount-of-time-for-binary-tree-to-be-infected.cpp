@@ -11,16 +11,17 @@
  */
 class Solution {
 public:
-    int amountOfTime(TreeNode* root, int start) {
+    using N = TreeNode;
+    int amountOfTime(N* root, int start) {
         int time = 0;    
         
-        unordered_map<TreeNode*,TreeNode*> parent;
+        unordered_map<N*,N*> parent;
         markParent(root,parent);
         
-        TreeNode* target = findNode(root,start);
+        N* target = findNode(root,start);
         
-        queue<TreeNode*> q;
-        unordered_map<TreeNode*, bool> vis;       
+        queue<N*> q;
+        unordered_map<N*, bool> vis;       
 
         q.push(target);
         vis[target] = true;
@@ -62,13 +63,13 @@ public:
     
     
 private:
-    TreeNode* findNode(TreeNode* node, int key) 
+    N* findNode(N* node, int key) 
     {
         if(node)
         {
             if(node->val == key) return node;        
             else {
-                TreeNode* foundNode = findNode(node->left,key);
+                N* foundNode = findNode(node->left,key);
                 if(!foundNode) foundNode = findNode(node->right,key);              
                 return foundNode;
              }
@@ -77,7 +78,7 @@ private:
 
     }
 
-    void markParent(TreeNode* root, unordered_map<TreeNode*, TreeNode*> &parent)
+    void markParent(N* root, unordered_map<N*, N*> &parent)
     {
         if(!root)return;
 
