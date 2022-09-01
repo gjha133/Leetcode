@@ -12,32 +12,21 @@
 class Solution {
 public:
     int goodNodes(TreeNode* root) {
-        unordered_map<int, int> store;
         int ans = 0;
-        f(root, store, ans);
+        f(root, INT_MIN, ans);
         return ans;
     }
     
-    void f(TreeNode* root, unordered_map<int, int>& store, int &ans)
+    void f(TreeNode* root, int max, int &ans)
     {
         if(root == NULL) return;
-        store[root->val]++;
-        bool good = true;
-        for(auto it : store)
+        if(root->val >= max) 
         {
-            if(root->val < it.first) 
-            {
-                good = false;
-                break;
-            }                
+            max = root->val;
+            ans++;
         }
         
-        if(good) ans++;
-        
-        f(root->left, store, ans);
-        f(root->right, store, ans);
-        
-        store[root->val]--;
-        if(store[root->val] == 0) store.erase(root->val);
+        f(root->left, max, ans);
+        f(root->right, max, ans);        
     }
 };
