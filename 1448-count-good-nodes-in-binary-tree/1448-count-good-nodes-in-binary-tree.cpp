@@ -12,21 +12,22 @@
 class Solution {
 public:
     int goodNodes(TreeNode* root) {
-        int ans = 0;
-        f(root, INT_MIN, ans);
-        return ans;
+        return f(root, root->val);
     }
     
-    void f(TreeNode* root, int max, int &ans)
+    int f(TreeNode* root, int max)
     {
-        if(root == NULL) return;
+        if(root == NULL) return 0;
+        int ans = 0;
         if(root->val >= max) 
         {
             max = root->val;
             ans++;
         }
         
-        f(root->left, max, ans);
-        f(root->right, max, ans);        
+        int left = f(root->left, max);
+        int right = f(root->right, max); 
+        
+        return ans + left + right;
     }
 };
