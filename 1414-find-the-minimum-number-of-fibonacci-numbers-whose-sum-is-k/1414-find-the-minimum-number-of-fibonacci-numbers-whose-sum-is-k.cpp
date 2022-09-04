@@ -2,8 +2,7 @@ class Solution {
 public:
     int findMinFibonacciNumbers(int k) {
         vector<int> fib = generateFib(k);
-        int n = fib.size(), end = n - 1;
-        int ans = 0;
+        int end = fib.size() - 1, ans = 0;
         while(k)
         {
             if(fib[end] <= k) 
