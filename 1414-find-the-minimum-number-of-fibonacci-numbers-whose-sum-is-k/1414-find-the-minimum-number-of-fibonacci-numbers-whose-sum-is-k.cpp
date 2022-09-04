@@ -20,14 +20,16 @@ public:
     vector<int> generateFib(int k)
     {
         vector<int> fib;
-        fib.push_back(1);
-        fib.push_back(1);
+        int prev = 1, prev1 = 1;
+        fib.push_back(prev);
+        fib.push_back(prev1);
         
-        int size = fib.size();
-        while(fib[size - 1] < k)
+        while(prev < k)
         {
-            fib.push_back(fib[size-1] + fib[size-2]);
-            size++;
+            int cur = prev + prev1;
+            fib.push_back(cur);
+            prev1 = prev;
+            prev = cur;
         }
         
         return fib;
