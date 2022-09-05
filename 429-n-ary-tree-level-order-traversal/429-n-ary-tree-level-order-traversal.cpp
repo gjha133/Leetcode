@@ -29,8 +29,8 @@ public:
         
         while(!q.empty())
         {
-            int n = q.size();
             vector<int> level;
+            int n = q.size();
             while(n--)
             {
                 auto node = q.front();
