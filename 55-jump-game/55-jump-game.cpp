@@ -1,15 +1,23 @@
 class Solution {
 public:
     bool canJump(vector<int>& nums) {
+        vector<int> dp (nums.size(), -1);
+        return f(0, nums, dp);
+    }
+    
+    bool f(int i, vector<int>& nums, vector<int>& dp)
+    {
         int n = nums.size();
-        int reachable = 0;
+        if(i == n - 1) return true;
+        if(nums[i] == 0) return false;
         
-        for(int i = 0; i < n; i++)
+        if(dp[i] != -1) return dp[i];
+        
+        for(int j = i + 1; j <= i + nums[i]; j++)
         {
-            if(i > reachable) return false;
-            reachable = max(reachable, i + nums[i]);
+            if(f(j, nums, dp)) return dp[i] = true;
         }
         
-        return true;
+        return dp[i] = false;
     }
 };
