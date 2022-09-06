@@ -1,26 +1,22 @@
 class Solution {
 public:
     int jump(vector<int>& nums) {
-        
         int n = nums.size();
+        vector<int> dp (n, 0);
         
-        int jumps = 0;
-        int maxReach = 0;
-        int currReach = 0;
-        
-        for(int i=0; i<n-1; i++)
+        for(int i = n-2; i >= 0; i--)
         {
-            maxReach = max(maxReach, i+nums[i]);
-            
-            if(i==currReach)
+            if(nums[i] >= n - 1 - i) dp[i] = 1;
+            else 
             {
-                jumps++;
-                currReach = maxReach;
-            }
-            cout << jumps << " " << maxReach << " " << currReach << endl;
+                int mn = 1e9;
+                for(int j = i + 1; j <= i + nums[i]; j++)
+                    mn = min(mn, 1 + dp[j]);
+
+                dp[i] = mn;
+            }            
         }
         
-        return jumps;
-        
+        return dp[0];
     }
 };
