@@ -4,6 +4,8 @@ public:
         int n = triangle.size();
         int dp[n][n];
         
+        // Since we did recursion from (0 -> n-1). Tabulation should be reverse of that i.e, from (n-1 -> 0)
+        
         // Base Case
         for(int j = 0; j < n; j++)
         {
