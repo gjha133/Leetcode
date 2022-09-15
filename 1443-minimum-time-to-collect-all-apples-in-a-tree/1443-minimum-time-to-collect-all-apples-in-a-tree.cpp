@@ -18,18 +18,21 @@ public:
     
     int dfs(int node, vector<bool>& hasApple, int d)
     {
+        if(visited[node]) return 0;
         visited[node] = true;
         int result = d;
         
+        int dist = 0;
         for(auto& i : adj[node])
         {
             if(!visited[i])
             {
-                int dist = dfs(i, hasApple, d + 1);
-                if(dist) result += dist - d;
+                dist += dfs(i, hasApple, 1);
             }
         }
         
-        return (hasApple[node] or result > d) ? result : 0;
+        if(dist == 0 and hasApple[node] == false) return 0;
+        
+        return d + dist;
     }
 };
