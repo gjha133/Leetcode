@@ -1,13 +1,14 @@
 class Solution {
 public:
-    int consecutiveNumbersSum(int n) {
-        int cnt=0,i=1;
-        while(n>0)
+    int consecutiveNumbersSum(int N) {
+        long long int count = 0; 
+        for (long long int k = 0; k*(k+1)/2 < N ;k++) 
         {
-            n-=i;
-            if(n%i==0) cnt++;
-            i++;
+            double a = ((double) N)/((double) k + 1) - (double) k/2;
+            if (a - (int) a == 0) {
+                count += 1;
+            }
         }
-        return cnt;
+        return count; 
     }
 };
