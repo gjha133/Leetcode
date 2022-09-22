@@ -1,27 +1,23 @@
-int notpick = 0 + robber(i+1, n, nums, dp);
-return dp[i] = max(pick, notpick);
-}
-};
-```
-​
-Tabulation:
+Recursion Brute Force:
 ```
 class Solution {
 public:
 int rob(vector<int>& nums) {
 int n = nums.size();
-if(!n) return 0;
-vector<int> dp(n);
-dp[0] = nums[0];
-for(int i = 1; i<n; i++)
+return robber(0, n, nums);
+}
+private:
+int robber(int i, int n, vector<int> &nums)
 {
-int take = nums[i];
-if(i > 1) take += dp[i-2];
-int nottake = dp[i-1];
-dp[i] = max(take, nottake);
+if(i >= n) return 0;
+if(i == n-1) return nums[i];
+int pick = nums[i] + robber(i+2, n, nums);
+int notpick = robber(i+1, n, nums);
+return max(pick, notpick);
 }
-return dp[n-1];
-}
-​
 };
 ```
+​
+Memoization:
+```
+class Solution {
