@@ -2,8 +2,7 @@ class Solution {
 public:
     int rob(vector<int>& nums) {
         if(nums.size() == 1) return nums[0];
-        vector<int> temp1;
-        vector<int> temp2;
+        vector<int> temp1, temp2;
         
         for(int i=0; i<nums.size(); i++)
         {
