@@ -3,22 +3,22 @@ public:
     /*
     int climbStairs(int n) 
     {
-        vector<int> ways (n+1, -1);
-        return helper(n,ways);       
+        vector<int> dp (n+1, -1);
+        return helper(n,dp);       
     }
     
-    int helper(int n, vector<int> &ways)
+    int helper(int n, vector<int> &dp)
     {
         if(n == 0 || n == 1) return 1;
         
-        if(ways[n] != -1) return ways[n];
+        if(dp[n] != -1) return dp[n];
         
-        int byone = helper(n-1, ways);
-        int bytwo = helper(n-2, ways);
+        int byone = helper(n-1, dp);
+        int bytwo = helper(n-2, dp);
         
         int ans = byone + bytwo;
-        ways[n] = ans;
-        return ways[n];
+        dp[n] = ans;
+        return dp[n];
         
     }
     */
