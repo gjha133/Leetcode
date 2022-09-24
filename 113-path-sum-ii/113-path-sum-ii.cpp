@@ -32,7 +32,7 @@ private:
             allPaths(root->right, targetSum, answer, path);
         }
         
-        //Remove from vector after done
+        //Remove from vector if there is no path through that node
         path.pop_back();    
     }
 };
