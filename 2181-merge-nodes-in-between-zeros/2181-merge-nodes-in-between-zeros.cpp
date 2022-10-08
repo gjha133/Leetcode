@@ -38,7 +38,9 @@ public:
             
             temp = temp->next;            
         }
+        
         cur->next = NULL;
+        delete head;
         return newHead;
     }
 };
