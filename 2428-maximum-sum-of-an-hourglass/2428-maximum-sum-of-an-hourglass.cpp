@@ -1,19 +1,17 @@
 class Solution {
 public:
+    int gethour(vector<vector<int>>& grid, int i, int j) {
+        return  grid[i - 1][j - 1] + grid[i - 1][j] + grid[i - 1][j + 1] + 
+                grid[i][j] + 
+                grid[i + 1][j - 1] + grid[i + 1][j] + grid[i + 1][j + 1];
+    }
     int maxSum(vector<vector<int>>& grid) {
-        int mx = 0;
-        int rows = grid.size(), cols = grid[0].size();
+        int n = grid.size(), m = grid[0].size();
+        int res = INT_MIN;
+        for(int i = 1; i < n - 1; i++)
+            for(int j = 1; j < m - 1; j++)
+                res = max(res, gethour(grid, i, j));
         
-        for(int i = 0; i < rows-2; i++)
-        {
-            int sum = 0;
-            for(int j = 0; j < cols-2; j++)
-            {
-                sum = grid[i][j]+grid[i][j+1]+grid[i][j+2]+grid[i+1][j+1]+grid[i+2][j]+grid[i+2][j+1]+grid[i+2][j+2];
-                mx = max(mx, sum);
-            }
-        }
-        
-        return mx;
+        return res;
     }
 };
