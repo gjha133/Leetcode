@@ -6,7 +6,7 @@ public:
             if(a % i == 0 and b % i == 0) ans++;
         return ans;        
     }
-    
+/*
 private:
     int gcd(int a, int b)
     {
@@ -18,6 +18,6 @@ private:
         }
         return result;
     }
-    
+*/   
     
 };
