@@ -11,7 +11,7 @@
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        
+        cin.sync_with_stdio(false);
         ListNode *dummy = new ListNode(0);
         ListNode *temp = dummy;
         int carry = 0;
