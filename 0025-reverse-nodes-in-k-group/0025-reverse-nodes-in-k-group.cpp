@@ -11,6 +11,7 @@
 class Solution {
 public:
     ListNode* reverseKGroup(ListNode* head, int k) {
+        cin.sync_with_stdio(false);
         if(head == NULL or head->next == NULL) return head;
         
         ListNode dummy(0);
