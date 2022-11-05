@@ -1,31 +1,33 @@
 class Solution {
 public:
-    string reverseWords(string s) {
-        reverse(s.begin(), s.end());
-        
+    string reverseWords(string s) {        
         int i = 0, j = 0, n = s.size(), lastIndex = 0;
+        string ans = "", temp;
         
         while(j < n)
         {
+            temp = "";
             // Find the starting index of word
             while(j < n && s[j] == ' ') j++;
             
-            int startIndex = i;
             
             // Store the complete word...
             while(j < n && s[j] != ' '){
-                s[i++] = s[j++];
-                lastIndex = i;
+                temp += s[j++];
             }
             
-            // Reverse the word
-            reverse(s.begin() + startIndex, s.begin() + i);
-            s[i++] = ' '; // after every word we need space [" "]
+            if(ans == "") ans += temp;
+            else
+            {
+                temp += " " + ans;
+                ans = temp;
+            }
         }
         
-        // Resize the string to last index...
-        s.resize(lastIndex);
-        return s;
+        while(i < ans.size() and ans[i] == ' ') i++;
+        
+        
+        return ans.substr(i, ans.size() - i);
 
     }
 };
