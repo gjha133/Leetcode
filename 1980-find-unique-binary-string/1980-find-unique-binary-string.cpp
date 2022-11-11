@@ -1,8 +1,6 @@
 class Solution {
 public:
     string findDifferentBinaryString(vector<string>& nums) {
-        if(nums.size() == 1 and nums[0] == "1") return "0";
-        if(nums.size() == 1 and nums[0] == "0") return "1";
         unordered_map<string, int> mp;
         for(auto s : nums) mp[s]++;
         int n = nums[0].size();
