@@ -9,6 +9,7 @@ public:
             {
                 currGcd = gcd(currGcd, nums[j]);
                 if (currGcd == k) ans++;
+                if(currGcd == 1 and k != 1) break;
             }
         }
         return ans; 
