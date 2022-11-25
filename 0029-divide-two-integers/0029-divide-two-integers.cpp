@@ -10,7 +10,7 @@ public:
         unsigned int ans = 0;
         while(a >= b)                                   // while dividend is greater than or equal to divisor
         {  
-            short q = 0;
+            int q = 0;
             while(a > (b<<(q+1)))
                 q++;
             
