@@ -9,11 +9,8 @@ class Solution {
     vector<int> dfsOfGraph(int V, vector<int> adj[]) {
         // Code here
         vector<int> dfs_traversal;
-        bool vis[V] = {false};
-        for(int i=0; i<V; i++)
-        {
-            if(!vis[i]) dfs(i, vis, adj, dfs_traversal);
-        }
+        bool vis[V] = {0};
+        dfs(0, vis, adj, dfs_traversal);
         
         return dfs_traversal;
     }
@@ -21,10 +18,12 @@ class Solution {
     void dfs(int node, bool *vis, vector<int> adj[], vector<int> &dfs_traversal)
     {
         dfs_traversal.push_back(node);
-        vis[node] = true;
+        vis[node] = 1;
+        
         for(auto it : adj[node])
         {
-            if(!vis[it]) dfs(it, vis, adj, dfs_traversal);
+            if(!vis[it]) 
+                dfs(it, vis, adj, dfs_traversal);
         }
     }
     
