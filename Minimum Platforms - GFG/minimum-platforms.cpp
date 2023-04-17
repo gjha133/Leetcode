@@ -19,16 +19,11 @@ class Solution{
         int i = 1, j = 0;
         while(i < n and j < n)
         {
-            if(arr[i] <= dep[j]) //one more platform needed
-            {
-                platform++;
-                i++;
-            }
-            else //one platform can be reduced
-            {
-                platform--;
-                j++;
-            }
+            //one more platform needed
+            if(arr[i] <= dep[j]) platform++, i++;
+            //one platform can be reduced
+            else platform--, j++;
+
             mx_platform = max(mx_platform, platform); //updating the value with the current maximum
         }
         return mx_platform; 
