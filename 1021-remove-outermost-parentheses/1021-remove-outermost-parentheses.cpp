@@ -2,21 +2,19 @@ class Solution {
 public:
     string removeOuterParentheses(string s) {
         string ans = "";
-        int open = 0, close = 0, start = 0;
+        int parenthesis = 0, start = 0;
         for(int i = 0; i < s.size(); i++) {
-            if(!open and !close) start = i;
+            if(!parenthesis) start = i;
             
-            if(s[i] == '(') open++;
-            else if(s[i] == ')') close++;
+            if(s[i] == '(') parenthesis++;
+            else if(s[i] == ')') parenthesis--;
             
-            if(open == close) {
+            if(!parenthesis) {
                 string temp = s.substr(start + 1, i - start - 1);
                 ans += temp;
-                open = 0, close = 0;
             }
         }
         
-        return ans;
-        
+        return ans;        
     }
 };
